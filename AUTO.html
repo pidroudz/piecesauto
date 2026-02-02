@@ -3,25 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pièces Auto Algérie | Renault, Peugeot, Hyundai, Toyota</title>
+    <title>Pièces Auto Algérie | Site Complet</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Variables CSS - الألوان الرئيسية */
+        /* ===== ROOT VARIABLES ===== */
         :root {
-            --bleu-fonce: #1e3a8a;
-            --bleu-clair: #3b82f6;
-            --jaune: #f59e0b;
-            --rouge: #ef4444;
-            --gris-clair: #f3f4f6;
-            --gris-moyen: #9ca3af;
-            --gris-fonce: #4b5563;
-            --blanc: #ffffff;
-            --noir: #000000;
-            --ombre: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            --ombre-forte: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --primary-blue: #1e3a8a;
+            --secondary-blue: #3b82f6;
+            --accent-yellow: #f59e0b;
+            --accent-red: #ef4444;
+            --accent-green: #10b981;
+            --light-gray: #f3f4f6;
+            --medium-gray: #9ca3af;
+            --dark-gray: #4b5563;
+            --white: #ffffff;
+            --black: #000000;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --radius: 8px;
         }
 
-        /* Reset et styles de base */
+        /* ===== RESET & BASE ===== */
         * {
             margin: 0;
             padding: 0;
@@ -34,17 +36,51 @@
         }
 
         body {
-            background-color: var(--gris-clair);
-            color: var(--gris-fonce);
+            background-color: var(--light-gray);
+            color: var(--dark-gray);
             line-height: 1.6;
-            direction: ltr;
+            min-height: 100vh;
         }
 
         .container {
-            width: 90%;
+            width: 100%;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 15px;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: var(--accent-yellow);
+            color: var(--primary-blue);
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-primary {
+            background-color: var(--primary-blue);
+            color: var(--white);
+        }
+
+        .btn-danger {
+            background-color: var(--accent-red);
+            color: var(--white);
+        }
+
+        .btn-success {
+            background-color: var(--accent-green);
+            color: var(--white);
         }
 
         .section {
@@ -53,65 +89,287 @@
 
         .section-title {
             text-align: center;
-            margin-bottom: 40px;
-            color: var(--bleu-fonce);
             font-size: 2.2rem;
+            color: var(--primary-blue);
+            margin-bottom: 40px;
             position: relative;
-            padding-bottom: 15px;
         }
 
         .section-title::after {
             content: '';
             position: absolute;
-            bottom: 0;
+            bottom: -10px;
             left: 50%;
             transform: translateX(-50%);
-            width: 100px;
+            width: 80px;
             height: 4px;
-            background: linear-gradient(to right, var(--jaune), var(--rouge));
+            background-color: var(--accent-yellow);
             border-radius: 2px;
         }
 
-        .btn {
-            display: inline-block;
-            padding: 12px 30px;
-            background-color: var(--jaune);
-            color: var(--bleu-fonce);
+        /* ===== LOGIN PAGE ===== */
+        .login-page {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .login-container {
+            background-color: var(--white);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: var(--shadow-lg);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .login-container h1 {
+            text-align: center;
+            color: var(--primary-blue);
+            margin-bottom: 30px;
+        }
+
+        .login-container h1 i {
+            color: var(--accent-yellow);
+            margin-right: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark-gray);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--medium-gray);
+            border-radius: var(--radius);
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        /* ===== DASHBOARD LAYOUT ===== */
+        .dashboard {
+            display: none;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: 250px;
+            background: linear-gradient(180deg, var(--primary-blue), #1e40af);
+            color: var(--white);
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            box-shadow: 3px 0 10px rgba(0,0,0,0.1);
+            z-index: 100;
+        }
+
+        .sidebar-header {
+            padding: 25px;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .sidebar-header h2 {
+            color: var(--accent-yellow);
+            margin-bottom: 5px;
+        }
+
+        .sidebar-menu {
+            padding: 20px 0;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            padding: 15px 25px;
+            color: var(--white);
             text-decoration: none;
-            border-radius: 30px;
-            font-weight: 700;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-            cursor: pointer;
+            transition: all 0.3s;
+            border-left: 4px solid transparent;
+        }
+
+        .menu-item:hover, .menu-item.active {
+            background-color: rgba(255,255,255,0.1);
+            border-left-color: var(--accent-yellow);
+            padding-left: 30px;
+        }
+
+        .menu-item i {
+            width: 20px;
+            margin-right: 10px;
             text-align: center;
         }
 
-        .btn:hover {
-            background-color: var(--bleu-fonce);
-            color: var(--blanc);
-            transform: translateY(-3px);
-            box-shadow: var(--ombre-forte);
+        .main-content {
+            margin-left: 250px;
+            padding: 20px;
         }
 
-        .btn-rouge {
-            background-color: var(--rouge);
-            color: var(--blanc);
+        /* ===== TOP BAR ===== */
+        .top-bar {
+            background-color: var(--white);
+            padding: 15px 25px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
         }
 
-        .btn-bleu {
-            background-color: var(--bleu-fonce);
-            color: var(--blanc);
+        .top-bar h1 {
+            color: var(--primary-blue);
+            font-size: 1.5rem;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--primary-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+        }
+
+        /* ===== STATS CARDS ===== */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background-color: var(--white);
+            padding: 25px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: var(--white);
+        }
+
+        .stat-icon.products { background-color: var(--primary-blue); }
+        .stat-icon.orders { background-color: var(--accent-green); }
+        .stat-icon.customers { background-color: var(--accent-yellow); }
+        .stat-icon.revenue { background-color: var(--accent-red); }
+
+        .stat-info h3 {
+            font-size: 2rem;
+            color: var(--dark-gray);
+            margin-bottom: 5px;
+        }
+
+        /* ===== CONTENT BOXES ===== */
+        .content-box {
+            background-color: var(--white);
+            padding: 25px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+        }
+
+        .content-box h3 {
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--light-gray);
+        }
+
+        /* ===== TABLES ===== */
+        .table-responsive {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        th {
+            background-color: var(--light-gray);
+            color: var(--primary-blue);
+            font-weight: 600;
+        }
+
+        tr:hover {
+            background-color: rgba(59, 130, 246, 0.05);
+        }
+
+        /* ===== FORMS ===== */
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        textarea.form-control {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        /* ===== FRONTEND STYLES ===== */
+        .frontend {
+            display: block;
         }
 
         /* Header */
-        .header {
-            background: linear-gradient(135deg, var(--bleu-fonce), var(--bleu-clair));
-            color: var(--blanc);
+        .frontend-header {
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            color: var(--white);
             padding: 15px 0;
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: var(--ombre-forte);
+            box-shadow: var(--shadow-lg);
         }
 
         .header-content {
@@ -119,6 +377,7 @@
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
+            gap: 20px;
         }
 
         .logo {
@@ -127,15 +386,9 @@
             gap: 12px;
         }
 
-        .logo-icon {
-            background-color: var(--jaune);
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
+        .logo i {
+            font-size: 2rem;
+            color: var(--accent-yellow);
         }
 
         .logo-text h1 {
@@ -144,109 +397,46 @@
         }
 
         .logo-text span {
-            color: var(--jaune);
             font-size: 0.9rem;
-            display: block;
+            color: var(--accent-yellow);
         }
 
-        /* Navigation */
-        .nav-menu {
+        .frontend-nav {
             display: flex;
             list-style: none;
-            gap: 5px;
+            gap: 10px;
+            flex-wrap: wrap;
         }
 
-        .nav-item {
-            position: relative;
-        }
-
-        .nav-link {
-            color: var(--blanc);
+        .frontend-nav a {
+            color: var(--white);
             text-decoration: none;
-            padding: 10px 18px;
-            border-radius: 5px;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .nav-link:hover, .nav-link.active {
-            background-color: rgba(255, 255, 255, 0.1);
-            color: var(--jaune);
-        }
-
-        .dropdown {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background-color: var(--blanc);
-            min-width: 220px;
-            box-shadow: var(--ombre-forte);
-            border-radius: 8px;
-            overflow: hidden;
-            display: none;
-            z-index: 100;
-        }
-
-        .nav-item:hover .dropdown {
-            display: block;
-        }
-
-        .dropdown-link {
-            display: block;
-            padding: 12px 20px;
-            color: var(--gris-fonce);
-            text-decoration: none;
-            border-bottom: 1px solid var(--gris-clair);
+            padding: 10px 20px;
+            border-radius: 30px;
             transition: all 0.3s ease;
         }
 
-        .dropdown-link:hover {
-            background-color: var(--gris-clair);
-            color: var(--bleu-fonce);
-            padding-left: 25px;
+        .frontend-nav a:hover {
+            background-color: rgba(255,255,255,0.1);
         }
 
-        /* Header Actions */
         .header-actions {
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 15px;
         }
 
-        .search-box {
-            position: relative;
-        }
-
-        .search-input {
-            padding: 10px 15px 10px 40px;
-            border-radius: 30px;
-            border: none;
-            width: 250px;
-            background-color: rgba(255, 255, 255, 0.9);
-        }
-
-        .search-icon {
-            position: absolute;
-            left: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--gris-moyen);
-        }
-
-        .cart-icon {
+        .cart-badge {
             position: relative;
             cursor: pointer;
-            font-size: 1.3rem;
         }
 
         .cart-count {
             position: absolute;
             top: -8px;
             right: -8px;
-            background-color: var(--rouge);
-            color: var(--blanc);
+            background-color: var(--accent-red);
+            color: var(--white);
             border-radius: 50%;
             width: 20px;
             height: 20px;
@@ -254,333 +444,98 @@
             align-items: center;
             justify-content: center;
             font-size: 0.8rem;
-            font-weight: bold;
         }
 
-        /* Hero Section */
+        /* Hero */
         .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
                         url('https://images.unsplash.com/photo-1549399542-7e3f8b79c341?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
             background-size: cover;
             background-position: center;
-            color: var(--blanc);
+            color: var(--white);
             padding: 100px 0;
             text-align: center;
         }
 
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .hero-title {
+        .hero h2 {
             font-size: 3rem;
             margin-bottom: 20px;
-            line-height: 1.2;
         }
 
-        .hero-subtitle {
+        .hero p {
             font-size: 1.2rem;
-            margin-bottom: 30px;
+            max-width: 800px;
+            margin: 0 auto 30px;
             opacity: 0.9;
         }
 
-        .hero-buttons {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        /* Marques Section */
-        .marques-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-            margin-top: 40px;
-        }
-
-        .marque-card {
-            background-color: var(--blanc);
-            border-radius: 12px;
-            padding: 30px 20px;
-            text-align: center;
-            transition: all 0.3s ease;
-            box-shadow: var(--ombre);
-            border: 3px solid transparent;
-        }
-
-        .marque-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--ombre-forte);
-            border-color: var(--jaune);
-        }
-
-        .marque-icon {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-        }
-
-        .renault { color: #ffcc00; }
-        .peugeot { color: #0072bc; }
-        .hyundai { color: #002c5f; }
-        .toyota { color: #eb0a1e; }
-
-        .marque-name {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-            color: var(--bleu-fonce);
-        }
-
-        /* Produits Section */
-        .filtres {
-            background-color: var(--blanc);
-            padding: 25px;
-            border-radius: 12px;
-            margin-bottom: 40px;
-            box-shadow: var(--ombre);
-        }
-
-        .filtres-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-        }
-
-        .filtre-groupe label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: var(--bleu-fonce);
-        }
-
-        .filtre-groupe select,
-        .filtre-groupe input {
-            width: 100%;
-            padding: 12px;
-            border-radius: 8px;
-            border: 1px solid var(--gris-moyen);
-            background-color: var(--blanc);
-        }
-
-        .produits-grid {
+        /* Products Grid */
+        .products-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 30px;
+            margin-top: 40px;
         }
 
-        .produit-card {
-            background-color: var(--blanc);
-            border-radius: 12px;
+        .product-card {
+            background-color: var(--white);
+            border-radius: var(--radius);
             overflow: hidden;
-            box-shadow: var(--ombre);
+            box-shadow: var(--shadow);
             transition: all 0.3s ease;
         }
 
-        .produit-card:hover {
+        .product-card:hover {
             transform: translateY(-10px);
-            box-shadow: var(--ombre-forte);
+            box-shadow: var(--shadow-lg);
         }
 
-        .produit-image {
+        .product-img {
             height: 200px;
-            background-color: var(--gris-clair);
+            background-color: var(--light-gray);
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
         }
 
-        .produit-image img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
+        .product-img i {
+            font-size: 4rem;
+            color: var(--medium-gray);
         }
 
-        .produit-info {
-            padding: 25px;
+        .product-info {
+            padding: 20px;
         }
 
-        .produit-categorie {
-            color: var(--rouge);
+        .product-category {
+            color: var(--accent-red);
             font-size: 0.9rem;
             font-weight: 600;
-            margin-bottom: 8px;
-            text-transform: uppercase;
+            margin-bottom: 5px;
         }
 
-        .produit-nom {
-            color: var(--bleu-fonce);
+        .product-name {
+            color: var(--primary-blue);
             font-size: 1.1rem;
             margin-bottom: 15px;
             height: 60px;
             overflow: hidden;
         }
 
-        .produit-prix {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-
-        .prix-actuel {
+        .product-price {
             font-size: 1.5rem;
+            color: var(--accent-yellow);
             font-weight: 700;
-            color: var(--jaune);
-        }
-
-        .prix-ancien {
-            font-size: 1rem;
-            color: var(--gris-moyen);
-            text-decoration: line-through;
-        }
-
-        .produit-actions {
-            display: flex;
-            gap: 10px;
-        }
-
-        .btn-ajouter {
-            flex: 1;
-            background-color: var(--bleu-fonce);
-            color: var(--blanc);
-        }
-
-        .btn-details {
-            background-color: var(--gris-clair);
-            color: var(--gris-fonce);
-        }
-
-        /* Panier Modal */
-        .panier-modal {
-            position: fixed;
-            top: 0;
-            right: -400px;
-            width: 380px;
-            height: 100vh;
-            background-color: var(--blanc);
-            box-shadow: var(--ombre-forte);
-            z-index: 2000;
-            transition: right 0.5s ease;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .panier-modal.ouvert {
-            right: 0;
-        }
-
-        .panier-header {
-            background-color: var(--bleu-fonce);
-            color: var(--blanc);
-            padding: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .fermer-panier {
-            background: none;
-            border: none;
-            color: var(--blanc);
-            font-size: 1.8rem;
-            cursor: pointer;
-        }
-
-        .panier-items {
-            flex: 1;
-            padding: 20px;
-            overflow-y: auto;
-        }
-
-        .panier-item {
-            display: flex;
-            margin-bottom: 20px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid var(--gris-clair);
-        }
-
-        .panier-item-image {
-            width: 80px;
-            height: 80px;
-            background-color: var(--gris-clair);
-            border-radius: 8px;
-            margin-right: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .panier-item-details {
-            flex: 1;
-        }
-
-        .panier-item-nom {
-            font-weight: 600;
-            margin-bottom: 5px;
-        }
-
-        .panier-item-prix {
-            color: var(--jaune);
-            font-weight: 700;
-        }
-
-        .panier-item-supprimer {
-            color: var(--rouge);
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-size: 1.2rem;
-        }
-
-        .panier-footer {
-            padding: 20px;
-            background-color: var(--gris-clair);
-            border-top: 1px solid var(--gris-moyen);
-        }
-
-        .panier-total {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 20px;
-            font-weight: 700;
-            font-size: 1.3rem;
-        }
-
-        /* Services Section */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .service-card {
-            background-color: var(--blanc);
-            padding: 30px;
-            border-radius: 12px;
-            text-align: center;
-            box-shadow: var(--ombre);
-            transition: all 0.3s ease;
-        }
-
-        .service-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--ombre-forte);
-        }
-
-        .service-icon {
-            font-size: 3rem;
-            color: var(--bleu-fonce);
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
         /* Footer */
-        .footer {
-            background-color: var(--bleu-fonce);
-            color: var(--blanc);
+        .frontend-footer {
+            background-color: var(--primary-blue);
+            color: var(--white);
             padding: 60px 0 20px;
+            margin-top: 60px;
         }
 
         .footer-grid {
@@ -591,11 +546,10 @@
         }
 
         .footer-col h3 {
-            color: var(--jaune);
-            margin-bottom: 25px;
+            color: var(--accent-yellow);
+            margin-bottom: 20px;
             padding-bottom: 10px;
-            border-bottom: 2px solid var(--rouge);
-            display: inline-block;
+            border-bottom: 2px solid var(--accent-red);
         }
 
         .footer-links {
@@ -603,11 +557,11 @@
         }
 
         .footer-links li {
-            margin-bottom: 12px;
+            margin-bottom: 10px;
         }
 
         .footer-links a {
-            color: var(--blanc);
+            color: var(--white);
             text-decoration: none;
             transition: all 0.3s ease;
             display: flex;
@@ -616,646 +570,855 @@
         }
 
         .footer-links a:hover {
-            color: var(--jaune);
+            color: var(--accent-yellow);
             padding-left: 5px;
-        }
-
-        .contact-info {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
         }
 
         .footer-bottom {
             text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
         }
 
-        /* Dashboard Link */
-        .dashboard-link {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background-color: var(--rouge);
-            color: var(--blanc);
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            box-shadow: var(--ombre-forte);
-            text-decoration: none;
-            z-index: 100;
-            transition: all 0.3s ease;
-        }
-
-        .dashboard-link:hover {
-            transform: scale(1.1);
-            background-color: var(--jaune);
-        }
-
-        /* Responsive */
+        /* ===== RESPONSIVE ===== */
         @media (max-width: 992px) {
-            .header-content {
-                flex-direction: column;
-                gap: 20px;
-            }
-            
-            .nav-menu {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            
-            .search-input {
+            .sidebar {
                 width: 200px;
             }
             
-            .hero-title {
-                font-size: 2.5rem;
+            .main-content {
+                margin-left: 200px;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .frontend-nav {
+                justify-content: center;
             }
         }
 
         @media (max-width: 768px) {
-            .hero-title {
+            .sidebar {
+                width: 70px;
+            }
+            
+            .sidebar-header h2,
+            .menu-item span {
+                display: none;
+            }
+            
+            .menu-item {
+                justify-content: center;
+                padding: 15px;
+            }
+            
+            .menu-item i {
+                margin-right: 0;
+                font-size: 1.2rem;
+            }
+            
+            .main-content {
+                margin-left: 70px;
+            }
+            
+            .hero h2 {
                 font-size: 2rem;
             }
             
-            .produits-grid {
+            .products-grid {
                 grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             }
             
-            .panier-modal {
-                width: 100%;
-                right: -100%;
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .container {
+                padding: 0 15px;
             }
             
-            .filtres-grid {
+            .section {
+                padding: 40px 0;
+            }
+            
+            .stats-grid {
                 grid-template-columns: 1fr;
+            }
+            
+            .top-bar {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Dashboard Link -->
-    <a href="#" class="dashboard-link" title="Tableau de bord">
-        <i class="fas fa-cogs"></i>
-    </a>
-
-    <!-- Header -->
-    <header class="header">
-        <div class="container header-content">
-            <div class="logo">
-                <div class="logo-icon">
-                    <i class="fas fa-car"></i>
-                </div>
-                <div class="logo-text">
-                    <h1>Pièces Auto Algérie</h1>
-                    <span>Pièces originales - Livraison nationale</span>
-                </div>
-            </div>
-
-            <nav>
-                <ul class="nav-menu">
-                    <li class="nav-item">
-                        <a href="#" class="nav-link active">
-                            <i class="fas fa-home"></i> Accueil
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#marques" class="nav-link">
-                            <i class="fas fa-car"></i> Marques
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#produits" class="nav-link">
-                            <i class="fas fa-cogs"></i> Pièces
-                        </a>
-                        <div class="dropdown">
-                            <a href="#" class="dropdown-link">Moteur & Électricité</a>
-                            <a href="#" class="dropdown-link">Freins & Jantes</a>
-                            <a href="#" class="dropdown-link">Suspension & Direction</a>
-                            <a href="#" class="dropdown-link">Pneus & Batteries</a>
-                            <a href="#" class="dropdown-link">Éclairage & Vitres</a>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#services" class="nav-link">
-                            <i class="fas fa-shipping-fast"></i> Services
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#contact" class="nav-link">
-                            <i class="fas fa-phone"></i> Contact
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-
-            <div class="header-actions">
-                <div class="search-box">
-                    <i class="fas fa-search search-icon"></i>
-                    <input type="text" class="search-input" placeholder="Rechercher une pièce...">
-                </div>
-                <div class="cart-icon" id="cartIcon">
-                    <i class="fas fa-shopping-cart"></i>
-                    <span class="cart-count">3</span>
-                </div>
-                <a href="#" class="btn btn-rouge" id="loginBtn">
-                    <i class="fas fa-user"></i> Connexion
-                </a>
-            </div>
-        </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container hero-content">
-            <h1 class="hero-title">Pièces Auto Originales en Algérie</h1>
-            <p class="hero-subtitle">
-                Trouvez les pièces détachées pour votre véhicule : Renault, Peugeot, Hyundai, Toyota. 
-                Pièces 100% originales avec garantie, livraison dans toutes les wilayas et paiement à la livraison.
-            </p>
-            <div class="hero-buttons">
-                <a href="#produits" class="btn">
-                    <i class="fas fa-shopping-cart"></i> Acheter Maintenant
-                </a>
-                <a href="#marques" class="btn btn-bleu">
-                    <i class="fas fa-car"></i> Voir les Marques
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Marques Section -->
-    <section class="section" id="marques">
-        <div class="container">
-            <h2 class="section-title">Nos Marques Partenaires</h2>
-            <div class="marques-grid">
-                <div class="marque-card">
-                    <div class="marque-icon">
-                        <i class="fas fa-car renault"></i>
-                    </div>
-                    <h3 class="marque-name">Renault</h3>
-                    <p>Pièces originales pour tous modèles</p>
-                    <a href="#" class="btn" style="margin-top: 15px;">Voir Pièces</a>
-                </div>
-                <div class="marque-card">
-                    <div class="marque-icon">
-                        <i class="fas fa-car peugeot"></i>
-                    </div>
-                    <h3 class="marque-name">Peugeot</h3>
-                    <p>Pièces certifiées constructeur</p>
-                    <a href="#" class="btn" style="margin-top: 15px;">Voir Pièces</a>
-                </div>
-                <div class="marque-card">
-                    <div class="marque-icon">
-                        <i class="fas fa-car hyundai"></i>
-                    </div>
-                    <h3 class="marque-name">Hyundai</h3>
-                    <p>Pièces avec garantie officielle</p>
-                    <a href="#" class="btn" style="margin-top: 15px;">Voir Pièces</a>
-                </div>
-                <div class="marque-card">
-                    <div class="marque-icon">
-                        <i class="fas fa-car toyota"></i>
-                    </div>
-                    <h3 class="marque-name">Toyota</h3>
-                    <p>Pièces de qualité supérieure</p>
-                    <a href="#" class="btn" style="margin-top: 15px;">Voir Pièces</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Produits Section -->
-    <section class="section" id="produits">
-        <div class="container">
-            <h2 class="section-title">Nos Produits Populaires</h2>
+    <!-- ===== LOGIN PAGE ===== -->
+    <div id="loginPage" class="login-page">
+        <div class="login-container">
+            <h1><i class="fas fa-car"></i> Administration</h1>
             
-            <div class="filtres">
-                <div class="filtres-grid">
-                    <div class="filtre-groupe">
-                        <label><i class="fas fa-car"></i> Marque:</label>
-                        <select>
-                            <option value="">Toutes les marques</option>
-                            <option value="renault">Renault</option>
-                            <option value="peugeot">Peugeot</option>
-                            <option value="hyundai">Hyundai</option>
-                            <option value="toyota">Toyota</option>
-                        </select>
-                    </div>
-                    <div class="filtre-groupe">
-                        <label><i class="fas fa-cog"></i> Catégorie:</label>
-                        <select>
-                            <option value="">Toutes catégories</option>
-                            <option value="moteur">Moteur</option>
-                            <option value="freins">Freins</option>
-                            <option value="pneus">Pneus</option>
-                            <option value="batterie">Batterie</option>
-                        </select>
-                    </div>
-                    <div class="filtre-groupe">
-                        <label><i class="fas fa-coins"></i> Prix (DA):</label>
-                        <input type="range" min="1000" max="100000" value="50000">
-                    </div>
-                    <div class="filtre-groupe">
-                        <label><i class="fas fa-sort"></i> Trier par:</label>
-                        <select>
-                            <option value="nouveau">Nouveautés</option>
-                            <option value="prix-croissant">Prix croissant</option>
-                            <option value="prix-decroissant">Prix décroissant</option>
-                        </select>
-                    </div>
-                </div>
+            <div class="form-group">
+                <label for="loginUsername"><i class="fas fa-user"></i> Nom d'utilisateur</label>
+                <input type="text" id="loginUsername" class="form-control" placeholder="Entrez votre nom d'utilisateur">
             </div>
-
-            <div class="produits-grid">
-                <!-- Produit 1 -->
-                <div class="produit-card">
-                    <div class="produit-image">
-                        <img src="https://images.unsplash.com/photo-1563720223480-d2fee4d9c6dd?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Batterie voiture">
-                    </div>
-                    <div class="produit-info">
-                        <div class="produit-categorie">Batteries</div>
-                        <h3 class="produit-nom">Batterie voiture 12V 60Ah pour Renault</h3>
-                        <div class="produit-prix">
-                            <span class="prix-actuel">15,500 DA</span>
-                            <span class="prix-ancien">18,000 DA</span>
-                        </div>
-                        <div class="produit-actions">
-                            <button class="btn btn-ajouter" data-id="1">
-                                <i class="fas fa-cart-plus"></i> Ajouter
-                            </button>
-                            <button class="btn btn-details">Détails</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Produit 2 -->
-                <div class="produit-card">
-                    <div class="produit-image">
-                        <img src="https://images.unsplash.com/photo-1554744512-2d7d6d7ad3f2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Filtre à huile">
-                    </div>
-                    <div class="produit-info">
-                        <div class="produit-categorie">Filtres</div>
-                        <h3 class="produit-nom">Filtre à huile pour Peugeot 208/308</h3>
-                        <div class="produit-prix">
-                            <span class="prix-actuel">2,800 DA</span>
-                        </div>
-                        <div class="produit-actions">
-                            <button class="btn btn-ajouter" data-id="2">
-                                <i class="fas fa-cart-plus"></i> Ajouter
-                            </button>
-                            <button class="btn btn-details">Détails</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Produit 3 -->
-                <div class="produit-card">
-                    <div class="produit-image">
-                        <img src="https://images.unsplash.com/photo-1593941707882-a5bba5338fe2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Pneu voiture">
-                    </div>
-                    <div class="produit-info">
-                        <div class="produit-categorie">Pneus</div>
-                        <h3 class="produit-nom">Pneu Hyundai i10 155/70 R13</h3>
-                        <div class="produit-prix">
-                            <span class="prix-actuel">18,900 DA</span>
-                            <span class="prix-ancien">22,000 DA</span>
-                        </div>
-                        <div class="produit-actions">
-                            <button class="btn btn-ajouter" data-id="3">
-                                <i class="fas fa-cart-plus"></i> Ajouter
-                            </button>
-                            <button class="btn btn-details">Détails</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Produit 4 -->
-                <div class="produit-card">
-                    <div class="produit-image">
-                        <img src="https://images.unsplash.com/photo-1601362840469-51e4d8d58785?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Freins">
-                    </div>
-                    <div class="produit-info">
-                        <div class="produit-categorie">Freins</div>
-                        <h3 class="produit-nom">Kit freins avant Toyota Corolla 2015-2020</h3>
-                        <div class="produit-prix">
-                            <span class="prix-actuel">12,500 DA</span>
-                        </div>
-                        <div class="produit-actions">
-                            <button class="btn btn-ajouter" data-id="4">
-                                <i class="fas fa-cart-plus"></i> Ajouter
-                            </button>
-                            <button class="btn btn-details">Détails</button>
-                        </div>
-                    </div>
-                </div>
+            
+            <div class="form-group">
+                <label for="loginPassword"><i class="fas fa-lock"></i> Mot de passe</label>
+                <input type="password" id="loginPassword" class="form-control" placeholder="Entrez votre mot de passe">
             </div>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section class="section" id="services">
-        <div class="container">
-            <h2 class="section-title">Nos Services</h2>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-shipping-fast"></i>
-                    </div>
-                    <h3>Livraison Rapide</h3>
-                    <p>Livraison dans toutes les wilayas d'Algérie en 24-72h</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h3>Garantie Produits</h3>
-                    <p>Toutes nos pièces sont garanties 1 an minimum</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-credit-card"></i>
-                    </div>
-                    <h3>Paiement Sécurisé</h3>
-                    <p>Paiement à la livraison ou par carte bancaire</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-headset"></i>
-                    </div>
-                    <h3>Support Client</h3>
-                    <p>Assistance technique disponible 7j/7</p>
-                </div>
+            
+            <button class="btn btn-primary" style="width: 100%;" onclick="login()">
+                <i class="fas fa-sign-in-alt"></i> Se Connecter
+            </button>
+            
+            <div style="margin-top: 20px; text-align: center; color: var(--medium-gray);">
+                <p><strong>Identifiants de test:</strong></p>
+                <p>Utilisateur: <strong>admin</strong></p>
+                <p>Mot de passe: <strong>admin123</strong></p>
             </div>
-        </div>
-    </section>
-
-    <!-- Panier Modal -->
-    <div class="panier-modal" id="panierModal">
-        <div class="panier-header">
-            <h3>Votre Panier</h3>
-            <button class="fermer-panier" id="fermerPanier">&times;</button>
-        </div>
-        <div class="panier-items">
-            <!-- Items ajoutés dynamiquement -->
-            <div class="panier-item">
-                <div class="panier-item-image">
-                    <i class="fas fa-car-battery"></i>
-                </div>
-                <div class="panier-item-details">
-                    <div class="panier-item-nom">Batterie voiture 12V 60Ah</div>
-                    <div class="panier-item-prix">15,500 DA</div>
-                    <div>Quantité: 1</div>
-                </div>
-                <button class="panier-item-supprimer">
-                    <i class="fas fa-trash"></i>
-                </button>
-            </div>
-            <div class="panier-item">
-                <div class="panier-item-image">
-                    <i class="fas fa-filter"></i>
-                </div>
-                <div class="panier-item-details">
-                    <div class="panier-item-nom">Filtre à huile Peugeot</div>
-                    <div class="panier-item-prix">2,800 DA</div>
-                    <div>Quantité: 2</div>
-                </div>
-                <button class="panier-item-supprimer">
-                    <i class="fas fa-trash"></i>
+            
+            <div style="margin-top: 30px; text-align: center;">
+                <button class="btn" onclick="showFrontend()">
+                    <i class="fas fa-store"></i> Voir le Site Public
                 </button>
             </div>
         </div>
-        <div class="panier-footer">
-            <div class="panier-total">
+    </div>
+
+    <!-- ===== DASHBOARD ===== -->
+    <div id="dashboard" class="dashboard">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h2><i class="fas fa-cogs"></i> Admin</h2>
+                <p>Pièces Auto</p>
+            </div>
+            
+            <div class="sidebar-menu">
+                <a href="#" class="menu-item active" onclick="showSection('dashboard-home')">
+                    <i class="fas fa-home"></i> <span>Tableau de Bord</span>
+                </a>
+                <a href="#" class="menu-item" onclick="showSection('products')">
+                    <i class="fas fa-cogs"></i> <span>Produits</span>
+                </a>
+                <a href="#" class="menu-item" onclick="showSection('orders')">
+                    <i class="fas fa-shopping-cart"></i> <span>Commandes</span>
+                </a>
+                <a href="#" class="menu-item" onclick="showSection('customers')">
+                    <i class="fas fa-users"></i> <span>Clients</span>
+                </a>
+                <a href="#" class="menu-item" onclick="showSection('delivery')">
+                    <i class="fas fa-truck"></i> <span>Livraison</span>
+                </a>
+                <a href="#" class="menu-item" onclick="showSection('reports')">
+                    <i class="fas fa-chart-bar"></i> <span>Rapports</span>
+                </a>
+                <a href="#" class="menu-item" onclick="showSection('settings')">
+                    <i class="fas fa-cog"></i> <span>Paramètres</span>
+                </a>
+                <a href="#" class="menu-item" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i> <span>Déconnexion</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Top Bar -->
+            <div class="top-bar">
+                <h1 id="dashboardTitle">Tableau de Bord</h1>
+                <div class="user-info">
+                    <div class="user-avatar">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                    <div>
+                        <strong>Administrateur</strong>
+                        <p style="font-size: 0.9rem; color: var(--medium-gray);">En ligne</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dashboard Home -->
+            <div id="dashboard-home" class="dashboard-section">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon products">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>156</h3>
+                            <p>Produits</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon orders">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>42</h3>
+                            <p>Commandes</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon customers">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>89</h3>
+                            <p>Clients</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon revenue">
+                            <i class="fas fa-money-bill-wave"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>2.5M DA</h3>
+                            <p>Revenus</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-box">
+                    <h3>Actions Rapides</h3>
+                    <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                        <button class="btn btn-success" onclick="showSection('products')">
+                            <i class="fas fa-plus"></i> Ajouter Produit
+                        </button>
+                        <button class="btn btn-primary" onclick="showFrontend()">
+                            <i class="fas fa-eye"></i> Voir Site Public
+                        </button>
+                        <button class="btn" onclick="showSection('reports')">
+                            <i class="fas fa-download"></i> Exporter Données
+                        </button>
+                    </div>
+                </div>
+
+                <div class="content-box">
+                    <h3>Dernières Commandes</h3>
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Client</th>
+                                    <th>Date</th>
+                                    <th>Total</th>
+                                    <th>Statut</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>#00125</td>
+                                    <td>Mohamed Ahmed</td>
+                                    <td>15/03/2024</td>
+                                    <td>45,800 DA</td>
+                                    <td><span style="color: var(--accent-green);">✓ Livré</span></td>
+                                </tr>
+                                <tr>
+                                    <td>#00124</td>
+                                    <td>Karim Benzema</td>
+                                    <td>14/03/2024</td>
+                                    <td>32,500 DA</td>
+                                    <td><span style="color: var(--accent-yellow);">⏳ En cours</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Products Management -->
+            <div id="products" class="dashboard-section" style="display: none;">
+                <div class="content-box">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                        <h3>Gestion des Produits</h3>
+                        <button class="btn btn-success" onclick="showProductForm()">
+                            <i class="fas fa-plus"></i> Nouveau Produit
+                        </button>
+                    </div>
+
+                    <!-- Product Form -->
+                    <div id="productForm" style="display: none; background-color: var(--light-gray); padding: 20px; border-radius: var(--radius); margin-bottom: 30px;">
+                        <h4 style="margin-bottom: 20px;">Ajouter un Produit</h4>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Nom du Produit *</label>
+                                <input type="text" id="pName" class="form-control" placeholder="Ex: Batterie 12V 60Ah">
+                            </div>
+                            <div class="form-group">
+                                <label>Marque *</label>
+                                <select id="pBrand" class="form-control">
+                                    <option value="">Sélectionner</option>
+                                    <option value="renault">Renault</option>
+                                    <option value="peugeot">Peugeot</option>
+                                    <option value="hyundai">Hyundai</option>
+                                    <option value="toyota">Toyota</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Catégorie *</label>
+                                <select id="pCategory" class="form-control">
+                                    <option value="">Sélectionner</option>
+                                    <option value="batterie">Batterie</option>
+                                    <option value="filtre">Filtre</option>
+                                    <option value="frein">Frein</option>
+                                    <option value="pneu">Pneu</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Prix (DA) *</label>
+                                <input type="number" id="pPrice" class="form-control" placeholder="15000">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Description</label>
+                            <textarea id="pDescription" class="form-control" placeholder="Description du produit..."></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Image URL</label>
+                            <input type="text" id="pImage" class="form-control" placeholder="https://example.com/image.jpg">
+                        </div>
+                        
+                        <div style="display: flex; gap: 10px;">
+                            <button class="btn btn-success" onclick="saveProduct()">
+                                <i class="fas fa-save"></i> Enregistrer
+                            </button>
+                            <button class="btn" onclick="hideProductForm()">
+                                Annuler
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Products Table -->
+                    <div class="table-responsive">
+                        <table id="productsTable">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Produit</th>
+                                    <th>Marque</th>
+                                    <th>Catégorie</th>
+                                    <th>Prix</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Batterie 12V 60Ah</td>
+                                    <td>Renault</td>
+                                    <td>Batterie</td>
+                                    <td>15,500 DA</td>
+                                    <td>
+                                        <button class="btn" style="padding: 5px 10px; font-size: 0.9rem;">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="btn btn-danger" style="padding: 5px 10px; font-size: 0.9rem;">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Filtre à huile</td>
+                                    <td>Peugeot</td>
+                                    <td>Filtre</td>
+                                    <td>2,800 DA</td>
+                                    <td>
+                                        <button class="btn" style="padding: 5px 10px; font-size: 0.9rem;">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="btn btn-danger" style="padding: 5px 10px; font-size: 0.9rem;">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Orders Management -->
+            <div id="orders" class="dashboard-section" style="display: none;">
+                <div class="content-box">
+                    <h3>Gestion des Commandes</h3>
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>ID Commande</th>
+                                    <th>Client</th>
+                                    <th>Date</th>
+                                    <th>Produits</th>
+                                    <th>Total</th>
+                                    <th>Statut</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>#00125</td>
+                                    <td>Mohamed Ahmed<br>0550-12-34-56</td>
+                                    <td>15/03/2024</td>
+                                    <td>Batterie Renault</td>
+                                    <td>45,800 DA</td>
+                                    <td>
+                                        <select class="form-control" style="width: 120px;">
+                                            <option>En attente</option>
+                                            <option selected>Livré</option>
+                                            <option>Annulé</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-success" style="padding: 5px 10px;">
+                                            <i class="fas fa-check"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Delivery Settings -->
+            <div id="delivery" class="dashboard-section" style="display: none;">
+                <div class="content-box">
+                    <h3>Paramètres de Livraison</h3>
+                    <p>Configurez les prix de livraison pour chaque wilaya :</p>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Wilaya</label>
+                            <select class="form-control">
+                                <option>Alger</option>
+                                <option>Oran</option>
+                                <option>Constantine</option>
+                                <option>Annaba</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Prix Livraison (DA)</label>
+                            <input type="number" class="form-control" value="800">
+                        </div>
+                    </div>
+                    
+                    <button class="btn btn-success">
+                        <i class="fas fa-save"></i> Enregistrer
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ===== FRONTEND SITE ===== -->
+    <div id="frontend" class="frontend" style="display: none;">
+        <!-- Header -->
+        <header class="frontend-header">
+            <div class="container">
+                <div class="header-content">
+                    <div class="logo">
+                        <i class="fas fa-car"></i>
+                        <div class="logo-text">
+                            <h1>Pièces Auto Algérie</h1>
+                            <span>Pièces Originales - Livraison Nationale</span>
+                        </div>
+                    </div>
+
+                    <nav>
+                        <ul class="frontend-nav">
+                            <li><a href="#home">Accueil</a></li>
+                            <li><a href="#products-front">Produits</a></li>
+                            <li><a href="#brands">Marques</a></li>
+                            <li><a href="#services">Services</a></li>
+                            <li><a href="#contact">Contact</a></li>
+                        </ul>
+                    </nav>
+
+                    <div class="header-actions">
+                        <div class="cart-badge" onclick="toggleCart()">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="cart-count">3</span>
+                        </div>
+                        <button class="btn" onclick="showLogin()">
+                            <i class="fas fa-user"></i> Admin
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="container">
+                <h2>Pièces Auto Originales en Algérie</h2>
+                <p>Commandez vos pièces détachées en ligne : Renault, Peugeot, Hyundai, Toyota. Livraison rapide dans toutes les wilayas, paiement à la livraison, garantie sur tous les produits.</p>
+                <button class="btn btn-primary" style="font-size: 1.1rem; padding: 15px 30px;">
+                    <i class="fas fa-shopping-cart"></i> Commander Maintenant
+                </button>
+            </div>
+        </section>
+
+        <!-- Products Section -->
+        <section id="products-front" class="section">
+            <div class="container">
+                <h2 class="section-title">Nos Produits Populaires</h2>
+                
+                <div class="products-grid">
+                    <!-- Product 1 -->
+                    <div class="product-card">
+                        <div class="product-img">
+                            <i class="fas fa-car-battery"></i>
+                        </div>
+                        <div class="product-info">
+                            <div class="product-category">Batterie</div>
+                            <h3 class="product-name">Batterie voiture 12V 60Ah Renault</h3>
+                            <div class="product-price">15,500 DA</div>
+                            <button class="btn" style="width: 100%;" onclick="addToCart(1)">
+                                <i class="fas fa-cart-plus"></i> Ajouter au Panier
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Product 2 -->
+                    <div class="product-card">
+                        <div class="product-img">
+                            <i class="fas fa-filter"></i>
+                        </div>
+                        <div class="product-info">
+                            <div class="product-category">Filtre</div>
+                            <h3 class="product-name">Filtre à huile Peugeot 208/308</h3>
+                            <div class="product-price">2,800 DA</div>
+                            <button class="btn" style="width: 100%;" onclick="addToCart(2)">
+                                <i class="fas fa-cart-plus"></i> Ajouter au Panier
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Product 3 -->
+                    <div class="product-card">
+                        <div class="product-img">
+                            <i class="fas fa-tire"></i>
+                        </div>
+                        <div class="product-info">
+                            <div class="product-category">Pneu</div>
+                            <h3 class="product-name">Pneu Hyundai i10 155/70 R13</h3>
+                            <div class="product-price">18,900 DA</div>
+                            <button class="btn" style="width: 100%;" onclick="addToCart(3)">
+                                <i class="fas fa-cart-plus"></i> Ajouter au Panier
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Product 4 -->
+                    <div class="product-card">
+                        <div class="product-img">
+                            <i class="fas fa-car-crash"></i>
+                        </div>
+                        <div class="product-info">
+                            <div class="product-category">Frein</div>
+                            <h3 class="product-name">Kit freins Toyota Corolla</h3>
+                            <div class="product-price">12,500 DA</div>
+                            <button class="btn" style="width: 100%;" onclick="addToCart(4)">
+                                <i class="fas fa-cart-plus"></i> Ajouter au Panier
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="frontend-footer" id="contact">
+            <div class="container">
+                <div class="footer-grid">
+                    <div class="footer-col">
+                        <h3>Pièces Auto Algérie</h3>
+                        <p>Votre partenaire de confiance pour les pièces automobiles en Algérie. Qualité garantie, prix compétitifs.</p>
+                    </div>
+                    
+                    <div class="footer-col">
+                        <h3>Liens Rapides</h3>
+                        <ul class="footer-links">
+                            <li><a href="#home"><i class="fas fa-chevron-right"></i> Accueil</a></li>
+                            <li><a href="#products-front"><i class="fas fa-chevron-right"></i> Produits</a></li>
+                            <li><a href="#services"><i class="fas fa-chevron-right"></i> Services</a></li>
+                            <li><a href="#contact"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-col">
+                        <h3>Contactez-nous</h3>
+                        <ul class="footer-links">
+                            <li><a href="tel:0550123456"><i class="fas fa-phone"></i> 0550-12-34-56</a></li>
+                            <li><a href="mailto:contact@piecesauto.dz"><i class="fas fa-envelope"></i> contact@piecesauto.dz</a></li>
+                            <li><a href="#"><i class="fas fa-map-marker-alt"></i> Alger Centre, Algérie</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="footer-bottom">
+                    <p>&copy; 2024 Pièces Auto Algérie. Tous droits réservés.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- ===== CART MODAL ===== -->
+    <div id="cartModal" style="display: none; position: fixed; top: 0; right: 0; width: 350px; height: 100vh; background: white; box-shadow: -5px 0 15px rgba(0,0,0,0.1); z-index: 2000; padding: 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+            <h3 style="color: var(--primary-blue);">Votre Panier</h3>
+            <button onclick="closeCart()" style="background: none; border: none; font-size: 1.5rem; cursor: pointer;">&times;</button>
+        </div>
+        <div id="cartItems">
+            <!-- Cart items will be added here -->
+        </div>
+        <div style="margin-top: auto; padding-top: 20px; border-top: 2px solid var(--light-gray);">
+            <div style="display: flex; justify-content: space-between; font-size: 1.2rem; font-weight: bold; margin-bottom: 20px;">
                 <span>Total:</span>
-                <span>21,100 DA</span>
+                <span id="cartTotal">0 DA</span>
             </div>
-            <button class="btn" style="width: 100%;">
-                <i class="fas fa-check"></i> Valider la Commande
+            <button class="btn btn-primary" style="width: 100%;">
+                <i class="fas fa-check"></i> Commander
             </button>
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="footer" id="contact">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <h3>Pièces Auto Algérie</h3>
-                    <p>Votre partenaire de confiance pour les pièces détachées automobiles en Algérie. Qualité, prix et service garantis.</p>
-                    <div class="contact-info" style="margin-top: 20px;">
-                        <div class="contact-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>Alger Centre, Algérie</span>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-phone"></i>
-                            <span>0550-12-34-56</span>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-envelope"></i>
-                            <span>contact@piecesauto.dz</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="footer-col">
-                    <h3>Liens Rapides</h3>
-                    <ul class="footer-links">
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Accueil</a></li>
-                        <li><a href="#marques"><i class="fas fa-chevron-right"></i> Marques</a></li>
-                        <li><a href="#produits"><i class="fas fa-chevron-right"></i> Produits</a></li>
-                        <li><a href="#services"><i class="fas fa-chevron-right"></i> Services</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Contact</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-col">
-                    <h3>Nos Services</h3>
-                    <ul class="footer-links">
-                        <li><a href="#"><i class="fas fa-check"></i> Livraison Nationale</a></li>
-                        <li><a href="#"><i class="fas fa-check"></i> Paiement Sécurisé</a></li>
-                        <li><a href="#"><i class="fas fa-check"></i> Garantie Produits</a></li>
-                        <li><a href="#"><i class="fas fa-check"></i> Support Technique</a></li>
-                        <li><a href="#"><i class="fas fa-check"></i> Retour & Échange</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-col">
-                    <h3>Moyens de Paiement</h3>
-                    <div style="font-size: 2rem; margin-bottom: 20px; color: var(--jaune);">
-                        <i class="fas fa-money-bill-wave"></i>
-                        <i class="fab fa-cc-visa"></i>
-                        <i class="fab fa-cc-mastercard"></i>
-                    </div>
-                    <p>Paiement à la livraison (cash) ou par carte bancaire sécurisée.</p>
-                    <h3 style="margin-top: 25px;">Suivez-nous</h3>
-                    <div style="font-size: 1.5rem; margin-top: 10px;">
-                        <a href="#" style="color: var(--blanc); margin-right: 15px;"><i class="fab fa-facebook"></i></a>
-                        <a href="#" style="color: var(--blanc); margin-right: 15px;"><i class="fab fa-instagram"></i></a>
-                        <a href="#" style="color: var(--blanc);"><i class="fab fa-whatsapp"></i></a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="footer-bottom">
-                <p>&copy; 2023 Pièces Auto Algérie. Tous droits réservés. | Site développé pour le marché algérien</p>
-            </div>
-        </div>
-    </footer>
-
     <script>
-        // Fonctionnalités du panier
-        const panierIcon = document.getElementById('cartIcon');
-        const panierModal = document.getElementById('panierModal');
-        const fermerPanier = document.getElementById('fermerPanier');
-        const ajouterBtns = document.querySelectorAll('.btn-ajouter');
-        const cartCount = document.querySelector('.cart-count');
-        const panierItems = document.querySelector('.panier-items');
-        const panierTotal = document.querySelector('.panier-total span:last-child');
+        // ===== GLOBAL VARIABLES =====
+        let currentUser = null;
+        let cart = [];
+        let products = [
+            { id: 1, name: "Batterie 12V 60Ah Renault", price: 15500, category: "Batterie", brand: "Renault" },
+            { id: 2, name: "Filtre à huile Peugeot", price: 2800, category: "Filtre", brand: "Peugeot" },
+            { id: 3, name: "Pneu Hyundai i10", price: 18900, category: "Pneu", brand: "Hyundai" },
+            { id: 4, name: "Kit freins Toyota", price: 12500, category: "Frein", brand: "Toyota" }
+        ];
 
-        // Ouvrir panier
-        panierIcon.addEventListener('click', () => {
-            panierModal.classList.add('ouvert');
-        });
+        // ===== LOGIN FUNCTIONS =====
+        function login() {
+            const username = document.getElementById('loginUsername').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            if (username === 'admin' && password === 'admin123') {
+                currentUser = { username: 'admin', role: 'admin' };
+                document.getElementById('loginPage').style.display = 'none';
+                document.getElementById('dashboard').style.display = 'flex';
+                document.getElementById('frontend').style.display = 'none';
+                showSection('dashboard-home');
+                updateDashboardTitle('Tableau de Bord');
+            } else {
+                alert('Identifiants incorrects! Utilisateur: admin, Mot de passe: admin123');
+            }
+        }
 
-        // Fermer panier
-        fermerPanier.addEventListener('click', () => {
-            panierModal.classList.remove('ouvert');
-        });
+        function logout() {
+            currentUser = null;
+            document.getElementById('dashboard').style.display = 'none';
+            document.getElementById('loginPage').style.display = 'flex';
+            document.getElementById('frontend').style.display = 'none';
+        }
 
-        // Ajouter au panier
-        ajouterBtns.forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                const produitId = e.target.closest('.btn-ajouter').getAttribute('data-id');
-                const produitCard = e.target.closest('.produit-card');
-                const produitNom = produitCard.querySelector('.produit-nom').textContent;
-                const produitPrix = produitCard.querySelector('.prix-actuel').textContent;
-                
-                // Vérifier si l'article existe déjà
-                let articleExiste = false;
-                document.querySelectorAll('.panier-item-nom').forEach(item => {
-                    if (item.textContent === produitNom) {
-                        articleExiste = true;
-                        // Augmenter la quantité
-                        const qteElement = item.closest('.panier-item').querySelector('div:nth-child(3)');
-                        const qteActuelle = parseInt(qteElement.textContent.split(': ')[1]);
-                        qteElement.textContent = `Quantité: ${qteActuelle + 1}`;
-                    }
-                });
-                
-                // Si n'existe pas, ajouter nouvel article
-                if (!articleExiste) {
-                    const panierItem = document.createElement('div');
-                    panierItem.className = 'panier-item';
-                    panierItem.innerHTML = `
-                        <div class="panier-item-image">
-                            <i class="fas fa-car-parts"></i>
-                        </div>
-                        <div class="panier-item-details">
-                            <div class="panier-item-nom">${produitNom}</div>
-                            <div class="panier-item-prix">${produitPrix}</div>
-                            <div>Quantité: 1</div>
-                        </div>
-                        <button class="panier-item-supprimer">
-                            <i class="fas fa-trash"></i>
-                        </button>
-                    `;
-                    
-                    panierItems.appendChild(panierItem);
-                    
-                    // Ajouter événement de suppression
-                    panierItem.querySelector('.panier-item-supprimer').addEventListener('click', () => {
-                        panierItem.remove();
-                        mettreAJourTotal();
-                        mettreAJourCompteur();
-                    });
-                }
-                
-                // Mettre à jour total et compteur
-                mettreAJourTotal();
-                mettreAJourCompteur();
-                
-                // Ouvrir panier et montrer message
-                panierModal.classList.add('ouvert');
-                alert('Produit ajouté au panier avec succès!');
+        function showLogin() {
+            document.getElementById('frontend').style.display = 'none';
+            document.getElementById('loginPage').style.display = 'flex';
+            document.getElementById('dashboard').style.display = 'none';
+        }
+
+        // ===== DASHBOARD FUNCTIONS =====
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.dashboard-section').forEach(section => {
+                section.style.display = 'none';
             });
+            
+            // Show selected section
+            document.getElementById(sectionId).style.display = 'block';
+            
+            // Update active menu
+            document.querySelectorAll('.menu-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Update title
+            const titles = {
+                'dashboard-home': 'Tableau de Bord',
+                'products': 'Gestion des Produits',
+                'orders': 'Commandes',
+                'customers': 'Clients',
+                'delivery': 'Livraison',
+                'reports': 'Rapports',
+                'settings': 'Paramètres'
+            };
+            
+            updateDashboardTitle(titles[sectionId] || 'Tableau de Bord');
+        }
+
+        function updateDashboardTitle(title) {
+            document.getElementById('dashboardTitle').textContent = title;
+        }
+
+        function showProductForm() {
+            document.getElementById('productForm').style.display = 'block';
+        }
+
+        function hideProductForm() {
+            document.getElementById('productForm').style.display = 'none';
+        }
+
+        function saveProduct() {
+            const name = document.getElementById('pName').value;
+            const brand = document.getElementById('pBrand').value;
+            const category = document.getElementById('pCategory').value;
+            const price = document.getElementById('pPrice').value;
+            
+            if (!name || !brand || !category || !price) {
+                alert('Veuillez remplir tous les champs obligatoires (*)');
+                return;
+            }
+            
+            alert(`Produit "${name}" enregistré avec succès!`);
+            hideProductForm();
+            
+            // Clear form
+            document.getElementById('pName').value = '';
+            document.getElementById('pBrand').value = '';
+            document.getElementById('pCategory').value = '';
+            document.getElementById('pPrice').value = '';
+            document.getElementById('pDescription').value = '';
+            document.getElementById('pImage').value = '';
+        }
+
+        // ===== FRONTEND FUNCTIONS =====
+        function showFrontend() {
+            document.getElementById('loginPage').style.display = 'none';
+            document.getElementById('dashboard').style.display = 'none';
+            document.getElementById('frontend').style.display = 'block';
+        }
+
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            if (product) {
+                cart.push(product);
+                updateCart();
+                alert(`${product.name} ajouté au panier!`);
+            }
+        }
+
+        function updateCart() {
+            const cartCount = document.querySelector('.cart-count');
+            const cartItems = document.getElementById('cartItems');
+            const cartTotal = document.getElementById('cartTotal');
+            
+            // Update count
+            cartCount.textContent = cart.length;
+            
+            // Update items
+            cartItems.innerHTML = '';
+            let total = 0;
+            
+            cart.forEach(item => {
+                total += item.price;
+                const itemElement = document.createElement('div');
+                itemElement.style.display = 'flex';
+                itemElement.style.justifyContent = 'space-between';
+                itemElement.style.alignItems = 'center';
+                itemElement.style.padding = '10px 0';
+                itemElement.style.borderBottom = '1px solid #eee';
+                
+                itemElement.innerHTML = `
+                    <div>
+                        <div style="font-weight: 600;">${item.name}</div>
+                        <div style="color: var(--accent-yellow); font-weight: bold;">${item.price.toLocaleString()} DA</div>
+                    </div>
+                    <button onclick="removeFromCart(${item.id})" style="background: var(--accent-red); color: white; border: none; width: 30px; height: 30px; border-radius: 50%; cursor: pointer;">
+                        <i class="fas fa-times"></i>
+                    </button>
+                `;
+                
+                cartItems.appendChild(itemElement);
+            });
+            
+            // Update total
+            cartTotal.textContent = `${total.toLocaleString()} DA`;
+        }
+
+        function removeFromCart(productId) {
+            const index = cart.findIndex(item => item.id === productId);
+            if (index !== -1) {
+                cart.splice(index, 1);
+                updateCart();
+            }
+        }
+
+        function toggleCart() {
+            const cartModal = document.getElementById('cartModal');
+            if (cartModal.style.display === 'none' || cartModal.style.display === '') {
+                cartModal.style.display = 'block';
+                updateCart();
+            } else {
+                cartModal.style.display = 'none';
+            }
+        }
+
+        function closeCart() {
+            document.getElementById('cartModal').style.display = 'none';
+        }
+
+        // ===== INITIALIZE =====
+        document.addEventListener('DOMContentLoaded', function() {
+            // Show login page by default
+            document.getElementById('loginPage').style.display = 'flex';
+            
+            // Set default credentials
+            document.getElementById('loginUsername').value = 'admin';
+            document.getElementById('loginPassword').value = 'admin123';
+            
+            // Initialize cart
+            updateCart();
         });
 
-        // Supprimer article du panier
-        document.addEventListener('click', (e) => {
-            if (e.target.closest('.panier-item-supprimer')) {
-                e.target.closest('.panier-item').remove();
-                mettreAJourTotal();
-                mettreAJourCompteur();
+        // ===== KEYBOARD SHORTCUTS =====
+        document.addEventListener('keydown', function(e) {
+            // Ctrl + L for login
+            if (e.ctrlKey && e.key === 'l') {
+                showLogin();
+            }
+            
+            // Ctrl + D for dashboard
+            if (e.ctrlKey && e.key === 'd') {
+                if (currentUser) {
+                    document.getElementById('frontend').style.display = 'none';
+                    document.getElementById('dashboard').style.display = 'flex';
+                    document.getElementById('loginPage').style.display = 'none';
+                }
+            }
+            
+            // Ctrl + F for frontend
+            if (e.ctrlKey && e.key === 'f') {
+                showFrontend();
+            }
+            
+            // Escape to close cart
+            if (e.key === 'Escape') {
+                closeCart();
             }
         });
-
-        // Mettre à jour total panier
-        function mettreAJourTotal() {
-            let total = 0;
-            document.querySelectorAll('.panier-item').forEach(item => {
-                const prixText = item.querySelector('.panier-item-prix').textContent;
-                const prix = parseFloat(prixText.replace(/[^\d.]/g, ''));
-                const qteText = item.querySelector('div:nth-child(3)').textContent;
-                const qte = parseInt(qteText.split(': ')[1]);
-                total += prix * qte;
-            });
-            
-            panierTotal.textContent = `${total.toLocaleString('fr-FR')} DA`;
-        }
-
-        // Mettre à jour compteur panier
-        function mettreAJourCompteur() {
-            let totalQte = 0;
-            document.querySelectorAll('.panier-item').forEach(item => {
-                const qteText = item.querySelector('div:nth-child(3)').textContent;
-                const qte = parseInt(qteText.split(': ')[1]);
-                totalQte += qte;
-            });
-            
-            cartCount.textContent = totalQte;
-        }
-
-        // Bouton connexion
-        document.getElementById('loginBtn').addEventListener('click', (e) => {
-            e.preventDefault();
-            alert('Page de connexion et tableau de bord seront ajoutés dans la version complète');
-        });
-
-        // Dashboard link
-        document.querySelector('.dashboard-link').addEventListener('click', (e) => {
-            e.preventDefault();
-            alert('Tableau de bord d\'administration - Interface pour ajouter produits, gérer commandes, etc.');
-        });
-
-        // Initialiser panier
-        mettreAJourTotal();
-        mettreAJourCompteur();
-
-        // Filtre de prix
-        const prixRange = document.querySelector('input[type="range"]');
-        const prixValue = document.createElement('div');
-        prixValue.style.marginTop = '5px';
-        prixValue.style.fontSize = '0.9rem';
-        prixValue.style.color = 'var(--bleu-fonce)';
-        prixRange.parentNode.appendChild(prixValue);
-        
-        prixRange.addEventListener('input', function() {
-            prixValue.textContent = `Jusqu'à ${parseInt(this.value).toLocaleString('fr-FR')} DA`;
-        });
-        prixRange.dispatchEvent(new Event('input'));
     </script>
 </body>
 </html>
